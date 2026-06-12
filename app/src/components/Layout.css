@@ -1,0 +1,75 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 500px;
+  padding: 12px 24px;
+  border-radius: 24px;
+  z-index: 100;
+  /* Override default glass panel padding */
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-family);
+  position: relative;
+}
+
+.nav-icon {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.nav-btn:hover {
+  color: var(--text-secondary);
+}
+
+.nav-btn.active {
+  color: var(--primary-color);
+}
+
+.nav-btn.active .nav-icon {
+  transform: translateY(-4px);
+  color: var(--primary-color);
+  filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
+.nav-btn.active .nav-label {
+  color: var(--text-primary);
+}
+
+/* Add a glowing dot indicator for active state */
+.nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}

@@ -1,0 +1,769 @@
+Your Personal Gym & Physio Tracker Guide  ·  Page 1
+Your Personal
+Gym & Physio
+Tracker Guide
+Build your complete Google Sheets tracker from scratch
+8-day training split + physio every 2 days
+01
+Spreadsheet Setup & Tab Structure
+02
+Building the Log Tab
+03
+Your Session & Exercise Dropdowns
+04
+Essential Formulas
+05
+Dashboard Tab
+06
+Day Template Tabs
+07
+Progress Charts
+08
+Physio Tracking System
+09
+Progressive Overload Tracking
+10
+Tips & Best Practices
+Google Sheets  ·  No coding required  ·  All formulas included
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 2
+00
+Your Training Programme at a Glance
+This guide is built specifically around your 8-day training split. Every formula, table, and example uses your
+exact exercises and session names. Follow the sections in order — start with the Log tab and add
+everything else once you have a week of data.
+Day 1
+Legs
+Day 2
+Push
+Day 3
+Pull
+Day 4
+Rest
+Day 5
+Legs
+Day 6
+Upper
+Day 7
+Arms
+Day 8
+Rest
+ Day
+ Session
+ Exercises
+Day 1
+Legs
+Leg Press, Leg Curl, Leg Extension, Calf Raise, Abs
+Day 2
+Push
+Incline Bench, Tricep Ext, Cable Flys, Lateral Raise, OHP Tricep
+Day 3
+Pull
+Seated Row, Wide Grip Lat PD, CS Row, Narrow Lat PD, Preacher, Inc DB Curl, Inc
+DB Hammer
+Day 4
+Rest
+—
+Day 5
+Legs
+Leg Press, Leg Curl, Leg Extension, Calf Raise, Abs
+Day 6
+Upper
+Incline Bench, Seated Row, Cable Flys, Narrow Lat PD, Back Hyperext
+Day 7
+Arms
+Lateral Raise, OHP Tricep, Preacher Curl, Tricep Ext, Inc DB Curl, Inc DB Hammer
+Day 8
+Rest
+—
+■  Physio is tracked on a separate 2-day cycle that runs independently of your training split. See Section 08 for the full setup.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 3
+01
+Spreadsheet Setup & Tab Structure
+Open Google Sheets (sheets.google.com), click + to create a blank spreadsheet, and name it something
+like My Gym & Physio Tracker 2025. Then create the following tabs by clicking the + at the bottom left.
+ Tab Name
+ Colour
+ Purpose
+■ Dashboard
+Red
+Live summary: PRs, weekly volume, physio status, next session
+■ Log
+Blue
+Main daily workout entry — one row per exercise per session
+■ Physio Log
+Orange
+Separate physio session tracker — one row per physio session
+■ Day 1 – Legs
+Green
+Exercise checklist + last weight pulled from Log
+■ Day 2 – Push
+Blue
+Exercise checklist + last weight pulled from Log
+■ Day 3 – Pull
+Pink
+Exercise checklist + last weight pulled from Log
+■ Day 5 – Legs
+Green
+Same as Day 1 template
+■ Day 6 – Upper
+Amber
+Exercise checklist + last weight pulled from Log
+■ Day 7 – Arms
+Purple
+Exercise checklist + last weight pulled from Log
+■ Progress
+Purple
+Auto-charts from Log data
+■ Settings
+Grey
+Exercise lists, units, 1RM goals, physio exercises
+Tab Colour Coding
+Right-click any tab → Change color. Match the colours above so navigation is instant at a glance. Use
+orange exclusively for the Physio Log so it stands out from training tabs.
+■  Hide the Day Template tabs you aren't using today: right-click → Hide sheet. Unhide via the menu Sheet → Show sheet.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 4
+02
+Building the Log Tab
+The Log tab is the engine of the tracker. Every formula on the Dashboard, every chart on the Progress tab,
+and every 'Last Weight' on your Day Templates pulls from here. Set it up carefully once and never change
+the column structure.
+Column Structure — Row 1 Headers
+Co
+ l
+ Header
+ What to enter
+A
+Date
+Enter as DD/MM/YYYY — format as Date via Format > Number > Date
+B
+Day #
+1 through 8 — which day in your current cycle
+C
+Session
+Legs / Push / Pull / Upper / Arms / Rest — use dropdown (Section 03)
+D
+Exercise
+Exercise name — use dropdown (Section 03) to keep spelling consistent
+E
+Set 1 Wt
+Weight in kg (or lbs — pick one and never switch)
+F
+Set 1 Reps
+Reps completed for set 1
+G
+Set 2 Wt
+Leave blank if only 1 set performed
+H
+Set 2 Reps
+Reps completed for set 2
+I
+Set 3 Wt
+Only for 3-set exercises (Calf Raise, Abs, Lateral Raise)
+J
+Set 3 Reps
+Reps completed for set 3
+K
+Notes
+Pain levels, form cues, fatigue, equipment notes
+One Row Per Exercise Per Session
+Each workout session adds one row per exercise. A full Legs session (Day 1) adds 5 rows — one for Leg
+Press, one for Leg Curl, etc. — all with the same date in column A.
+# Example — Day 1 Legs session:
+Date     | Day | Session | Exercise        | S1 Wt | S1 Reps | S2 Wt | S2 Reps
+---------|-----|---------|-----------------|-------|---------|-------|--------
+01/05/25 |  1  | Legs    | Leg Press       | 100   | 12      | 100   | 10
+01/05/25 |  1  | Legs    | Leg Curl        |  50   | 12      |  50   | 10
+01/05/25 |  1  | Legs    | Leg Extension   |  40   | 15      |  40   | 12
+01/05/25 |  1  | Legs    | Calf Raise      |  60   | 20      |  60   | 18      | 60 | 16
+01/05/25 |  1  | Legs    | Abs             |  BW   | 30      |  BW   | 25      | BW | 20
+■  For bodyweight exercises (Abs), type BW in the weight column. Track progression through reps alone using the +2 rule (Section 09).
+Freeze the Header Row
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 5
+1. Click the row number '1' on the far left to select the entire row
+2. Go to View in the menu bar
+3. Hover over Freeze
+4. Click '1 row'
+# Now row 1 stays visible as you scroll through months of data
+Format the Date Column
+1. Click column A header to select the whole column
+2. Go to Format > Number > Date
+# This ensures Google Sheets treats dates as real dates,
+# not text — required for all time-based chart formulas
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 6
+03
+Your Session & Exercise Dropdowns
+Dropdowns enforce consistent spelling — which is essential because every formula in the tracker matches
+text exactly. 'Leg Press' and 'leg press' are treated as two different exercises by Google Sheets.
+Session Dropdown (Column C)
+1. Select column C on the Log tab (click the C header)
+2. Go to Data > Data validation
+3. Click 'Add rule'
+4. Under Criteria, choose 'Dropdown'
+5. Enter each option on a new line:
+   Legs
+   Push
+   Pull
+   Upper
+   Arms
+   Rest
+6. Set 'If data is invalid' to 'Reject the input'
+7. Click Done
+Exercise Dropdown — Your Full List (Column D)
+Add all exercises as a dropdown. The recommended approach is to store the list in your Settings tab, then
+point the dropdown to that range.
+# STEP 1: In the Settings tab, type these in cells B2 downward:
+Leg Press          | Incline Bench Press      | Seated Row
+Leg Curl           | Tricep Extension         | Wide Grip Lat Pulldown
+Leg Extension      | Cable Flys               | Chest Supported Row
+Calf Raise         | Lateral Raise            | Narrow Grip Lat Pulldown
+Abs                | Overhead Tricep Press    | Preacher Curl
+Back Hyperext      | Incline DB Curl          | Incline DB Hammer Curl
+# STEP 2: In Log column D, set Data Validation:
+Criteria: 'Dropdown (from a range)'
+Range: Settings!B2:B30
+# Adding new exercises later = just type them in Settings!B
+# They appear automatically in the dropdown
+■  Put the Physio exercises in Settings column D (separate from gym exercises) for use in the Physio Log dropdown.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 7
+04
+Essential Formulas
+These six formulas do 90% of the work in the tracker. You don't need to understand how they work — just
+copy them, then change the quoted exercise name and column references to match yours.
+4.1  Pull the Last Logged Weight for Any Exercise
+Place this on a Day Template tab in the 'Last Weight' column next to each exercise. It searches the Log
+tab and returns the most recent weight entry for that exercise.
+=IFERROR(
+  INDEX(Log!E:E,
+    MATCH(2, 1-(Log!D:D="Leg Press"), 0)
+  ),
+  "No data"
+)
+# Change 'Leg Press' to any exercise name
+# Change Log!E:E to Log!G:G for Set 2 weight, Log!I:I for Set 3
+■  Copy this formula down your entire exercise list, changing the name in quotes each time. Use Ctrl+H (Find & Replace) to batch-update exercise names.
+4.2  Total Volume for a Session Today (Sets × Reps × Weight)
+This multiplies weight × reps for every matching session row today and sums them. Place it on the
+Dashboard.
+=SUMPRODUCT(
+  (Log!C:C="Legs") *
+  (Log!A:A=TODAY()) *
+  Log!E:E * Log!F:F
+)
+# Swap 'Legs' for any session name
+# Swap TODAY() for a specific date: DATE(2025,5,1)
+# Add more set columns to include Set 2 and 3 volume:
+# + Log!G:G*Log!H:H + Log!I:I*Log!J:J
+4.3  Count Training Sessions This Week
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 8
+=COUNTIFS(
+  Log!A:A, ">="&(TODAY()-WEEKDAY(TODAY(),2)+1),
+  Log!A:A, "<="&(TODAY()-WEEKDAY(TODAY(),2)+7),
+  Log!C:C, "<>Rest"
+)
+# WEEKDAY(TODAY(),2) returns 1=Mon through 7=Sun
+# Subtracting it from TODAY() gives last Monday
+# Adding 7 gives next Sunday — the full current week
+4.4  Personal Best (Heaviest Weight Ever) for One Exercise
+=MAXIFS(Log!E:E, Log!D:D, "Leg Press")
+# Returns the highest value in column E (Set 1 Weight)
+# where column D (Exercise) equals 'Leg Press'
+# Repeat for every exercise on your Dashboard PR table
+# Change Log!E:E to Log!G:G to check Set 2 weight PRs
+4.5  Days Since Last Physio Session
+Place this on your Dashboard. It shows how many days ago you last completed physio — helping you see
+at a glance if you're overdue.
+=IFERROR(
+  TODAY() - MAX('Physio Log'!A:A),
+  "No sessions logged"
+)
+# 'Physio Log'!A:A is the date column in your Physio Log tab
+# MAX returns the most recent date
+# TODAY() minus that = days elapsed
+# Add conditional formatting: red if value > 2 (overdue)
+4.6  Next Physio Due Date
+=IFERROR(
+  MAX('Physio Log'!A:A) + 2,
+  "Log your first session"
+)
+# Takes the last physio date and adds 2 days
+# Format this cell as a Date (Format > Number > Date)
+# Pair with conditional formatting:
+#   Green  if >= TODAY()  (on track)
+#   Red    if <  TODAY()  (overdue)
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 9
+05
+Dashboard Tab
+The Dashboard is read-only — you never type here manually. Build it after you have at least one full week
+of data in the Log tab.
+Suggested Layout
+ Cell / Range
+ Content
+ Formula / Value
+A1
+Big bold title
+'MY GYM & PHYSIO TRACKER 2025'
+A3
+Today's date
+=TEXT(TODAY(),"DDD DD MMM YYYY")
+A5:B5
+Sessions this week
+Use formula 4.3
+C5:D5
+Total volume this week
+Sum formula 4.2 for each session
+A7
+Next physio due
+Use formula 4.6
+B7
+Days since last physio
+Use formula 4.5
+A9:D9
+'Personal Bests' heading
+Merged, bold, dark background
+A10–A28
+One row per exercise
+=MAXIFS(Log!E:E,Log!D:D,"[Exercise]")
+A30:D30
+'Last Session' heading
+Merged, bold
+A31–A40
+Last weight per exercise
+Use formula 4.1 for each exercise
+Physio Status Card on the Dashboard
+Add a dedicated physio section that makes it immediately obvious whether you need to do physio today.
+# In a merged cell block on the Dashboard, add:
+Cell label:   'PHYSIO STATUS'
+Next due:     =IFERROR(MAX('Physio Log'!A:A)+2, "Log first session")
+Days since:   =IFERROR(TODAY()-MAX('Physio Log'!A:A), "-")
+Status:       =IF(TODAY()>=IFERROR(MAX('Physio Log'!A:A)+2,TODAY()),
+                 "DUE TODAY", "On track")
+# Apply conditional formatting to the Status cell:
+# Text is exactly 'DUE TODAY' → red fill, white text
+# Text is exactly 'On track'  → green fill, white text
+■  Put the physio status block in the top-right of the Dashboard so it's impossible to miss before you head to the gym.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 10
+06
+Day Template Tabs
+Each Day Template tab is a quick-reference checklist you glance at in the gym. It shows your exercise list,
+target sets/reps, and the last weight you lifted — pulled automatically from the Log tab.
+Template Column Structure (Same for All Days)
+ Col A
+ Col B
+ Col C
+ Col D
+ Col E
+Exercise Name
+Target Sets
+Target Reps
+Last Weight
+(formula)
+Next Target
+(+2.5kg)
+# In column D next to each exercise, use formula 4.1:
+=IFERROR(INDEX(Log!E:E, MATCH(2,1-(Log!D:D="Leg Press"),0)), "—")
+# In column E, calculate the next target weight:
+=IF(D2="—", "—", D2 + 2.5)
+# Drag both formulas down for every exercise in the session
+Day 1 & Day 5 — Legs
+ Exercise
+ Sets
+ Rep Range
+ Notes
+Leg Press
+2
+10–12
+Primary quad movement
+Leg Curl
+2
+10–12
+Hamstring isolation
+Leg Extension
+2
+12–15
+Quad finishing movement
+Calf Raise
+3
+15–20
+3 sets — include Set 3 cols
+Abs
+3
+20–30
+Bodyweight — track reps only
+Day 2 — Push
+ Exercise
+ Sets
+ Rep Range
+ Notes
+Incline Bench Press
+2
+8–12
+Primary chest/anterior delt
+Tricep Extension
+2
+10–15
+Isolation — control the
+negative
+Cable Flys
+2
+12–15
+Full stretch at bottom
+Lateral Raise
+3
+12–15
+3 sets — medial delt focus
+Overhead Tricep Press
+2
+10–12
+Long head tricep
+Day 3 — Pull
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 11
+ Exercise
+ Sets
+ Rep Range
+ Notes
+Seated Row
+2
+10–12
+Horizontal pull — retract
+scapula
+Wide Grip Lat Pulldown
+2
+10–12
+Lat width
+Chest Supported Row
+2
+10–12
+Removes lower back from
+equation
+Narrow Grip Lat Pulldown
+2
+10–12
+Lat thickness
+Preacher Curl
+2
+10–12
+Bicep peak — no momentum
+Incline DB Curl
+1
+10–12
+Stretched bicep — heavy
+stretch
+Incline DB Hammer Curl
+1
+10–12
+Brachialis emphasis
+Day 6 — Upper
+ Exercise
+ Sets
+ Rep Range
+ Notes
+Incline Bench Press
+3
+8–12
+3 sets this day — heavier
+focus
+Seated Row
+2
+10–12
+Pull to lower chest
+Cable Flys
+3
+12–15
+3 sets — pump focus
+Narrow Grip Lat Pulldown
+2
+10–12
+Back Hyperextensions
+2
+12–15
+Lower back / glute tie-in
+Day 7 — Arms
+ Exercise
+ Sets
+ Rep Range
+ Notes
+Lateral Raise
+3
+12–15
+Start with delts while fresh
+Overhead Tricep Press
+2
+10–12
+Preacher Curl
+2
+10–12
+Tricep Extension
+2
+10–15
+Incline DB Curl
+1
+10–12
+Incline DB Hammer Curl
+1
+10–12
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 12
+07
+Progress Charts
+Add charts to the Progress tab after you have 2–3 weeks of data. All charts reference the Log tab
+automatically — you never manually update them.
+Chart 1: Weight-Over-Time (Progressive Overload) — Most Important
+# METHOD A — Simple (requires a helper column in Log):
+1. Add a new column in Log (e.g. column M) with this formula in M2:
+   =IF(D2="Leg Press", E2, "")
+   This shows the weight only for Leg Press rows, blank everywhere else
+2. On the Progress tab: Insert > Chart
+3. Chart type: Line chart
+4. Data range: Log!A:A, Log!M:M
+5. X-axis: Column A (dates)
+6. Series: Column M (filtered weight)
+7. Title: 'Leg Press — Set 1 Weight Progression'
+# Duplicate this chart for each exercise you want to track.
+# Right-click chart > Copy chart, paste, then edit column M
+# to filter for a different exercise.
+■  Add a Trendline to each chart: double-click chart > Customize > Series > Trendline. Set it to Linear. This shows your rate of progression visually.
+Chart 2: Weekly Training Volume (Stacked Bar)
+# STEP 1: On Progress tab, create a helper table:
+Week    | Legs Vol | Push Vol | Pull Vol | Upper Vol | Arms Vol
+--------|----------|----------|----------|-----------|--------
+Wk 1    | formula  | formula  | formula  | formula   | formula
+# For each cell use SUMPRODUCT (formula 4.2 variation):
+# Legs volume in week starting 28/04/25:
+=SUMPRODUCT(
+  (Log!C:C="Legs") *
+  (Log!A:A>=DATE(2025,4,28)) *
+  (Log!A:A<DATE(2025,5,5)) *
+  Log!E:E * Log!F:F
+)
+# STEP 2: Select the entire helper table
+# Insert > Chart > Stacked bar chart
+# One colour per session type
+Chart 3: Physio Completion Rate (Column Chart)
+Track how consistently you're completing physio sessions.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 13
+# Build a helper table on the Progress tab:
+Week    | Physio Sessions | Target (=3 per 2 weeks)
+Wk 1    | =COUNTIFS(...)  | 3
+# Count physio sessions per week:
+=COUNTIFS(
+  'Physio Log'!A:A, ">="&DATE(2025,4,28),
+  'Physio Log'!A:A, "<"&DATE(2025,5,5)
+)
+# Insert > Chart > Column chart
+# Add a target line: Customize > Series > add a constant line at 3
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 14
+08
+Physio Tracking System
+Physio runs on its own 2-day cycle, independent of your training split. The system has three parts: a
+dedicated Physio Log tab, a physio status block on the Dashboard, and an alert formula that tells you
+when you're due.
+PHY
+1
+—
+2
+PHY
+3
+—
+4
+PHY
+5
+—
+6
+PHY
+7
+—
+8
+PHY
+9
+—
+10
+PHY
+11
+—
+12
+PHY
+13
+—
+14
+Above: physio sessions (orange) scheduled every 2 days across a 2-week window. Days without physio are shown in grey.
+8.1  Building the Physio Log Tab
+Create a new tab called ■ Physio Log and set up these columns in row 1:
+Co
+ l
+ Header
+ What to enter
+A
+Date
+Date of physio session — format as Date
+B
+Duration (min)
+How long the session took
+C
+Exercises Done
+Comma-separated list or use a multi-select dropdown
+D
+Pain Level
+(1–10)
+Your pain/discomfort during session — track trends
+E
+Body Area
+Which area: e.g. Knee, Shoulder, Lower Back, Hip
+F
+Sets Completed
+How many sets/rounds of the routine you finished
+G
+Notes
+How it felt, any improvements, anything to flag
+H
+Compliance
+=IF(A2-A1<=2,"On time","Late") — auto compliance check
+8.2  Compliance Formula (Column H)
+This formula automatically flags whether each session was completed on time (within 2 days of the
+previous one).
+# In cell H3 (start from H3, not H2 — needs a previous row to compare):
+=IF(A3="", "",
+  IF(A3-A2 <= 2,
+     "On time",
+     "Late (" & (A3-A2) & " days gap)"
+  )
+)
+# Drag this formula down column H for all rows
+# It compares each session date to the previous one
+# Shows 'On time' if gap is 2 days or less
+# Shows 'Late (4 days gap)' etc. if you missed sessions
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 15
+■  Apply conditional formatting to column H: 'On time' = green fill, anything starting with 'Late' = red fill. At a glance you can see your compliance history.
+8.3  Physio Exercise List in Settings
+Store your physio exercises in the Settings tab so you can use them as a dropdown in the Physio Log. Add
+them in column D of the Settings tab:
+# Settings tab, column D — your physio exercises:
+D1: Physio Exercises
+D2: [Your exercise 1]
+D3: [Your exercise 2]
+D4: [Your exercise 3]
+# ... add all exercises given by your physio
+# Then in Physio Log column C, set Data Validation:
+Criteria: Dropdown (from a range)
+Range: Settings!D2:D30
+8.4  Dashboard Physio Status Block
+Add this block to your Dashboard. It tells you at a glance whether physio is due today.
+# Four cells in a 2x2 block on your Dashboard:
+Cell 1 label:  'Last Physio'
+Cell 1 value:  =IFERROR(TEXT(MAX('Physio Log'!A:A),"DD MMM"),"None yet")
+Cell 2 label:  'Next Due'
+Cell 2 value:  =IFERROR(TEXT(MAX('Physio Log'!A:A)+2,"DD MMM"),"—")
+Cell 3 label:  'Days Since'
+Cell 3 value:  =IFERROR(TODAY()-MAX('Physio Log'!A:A),"—")
+Cell 4 label:  'STATUS'
+Cell 4 value:  =IF(IFERROR(TODAY()-MAX('Physio Log'!A:A),99)>=2,
+                 "DUE TODAY","On track")
+# Conditional formatting on Cell 4:
+#   Text = 'DUE TODAY' → red background (#E74C3C), white text
+#   Text = 'On track'  → green background (#27AE60), white text
+8.5  Physio Streak Counter
+This formula counts how many consecutive on-time sessions you've completed — a powerful motivator to
+keep the streak alive.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 16
+# Place on Dashboard:
+=COUNTIF('Physio Log'!H:H, "On time")
+# This counts every 'On time' in the compliance column
+# For a true streak (stops at first 'Late'), this is more complex
+# — start with the simple COUNTIF and upgrade later
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 17
+09
+Progressive Overload Tracking
+Progressive overload is the most important training principle. Your tracker should make it obvious when to
+add weight — no mental arithmetic needed.
+The +2.5kg Next Target Column
+# On each Day Template tab, column E next to 'Last Weight':
+=IF(D2="—", "—", D2 + 2.5)
+# D2 is your Last Weight formula cell
+# This always shows the next weight to attempt
+# For lighter exercises (curls, extensions), use + 1.25 instead
+Rep-Based Progression for Bodyweight Exercises
+# For Abs and Calf Raise — track reps, not weight
+# Add a 'Last Reps' formula on the Day Template tab:
+=IFERROR(
+  INDEX(Log!F:F, MATCH(2, 1-(Log!D:D="Abs"), 0)),
+  "—"
+)
+# Next target reps in the adjacent cell:
+=IF(D2="—", "—", D2 + 2)
+# When you hit the top of your rep range (e.g. 30 reps),
+# add weight (weighted crunch/weighted calf raise)
+# and reset the rep target to the bottom of the range
+Deload Detection — vs Last Session Column
+# On each Day Template tab, add a 'vs Last' column:
+=IF(OR(D2="—",E2="—"), "—",
+  IF(E2>D2, "+" & (E2-D2) & "kg",
+  IF(E2<D2, "-" & (D2-E2) & "kg",
+  "Same")))
+# D2 = last session weight, E2 = session before that
+# (requires formula 4.1 variations for previous sessions)
+# Apply conditional formatting:
+# Value starts with '+' → green fill (improved)
+# Value = 'Same'        → yellow fill (plateaued)
+# Value starts with '-' → red fill  (regressed)
+# Two+ consecutive red cells = time to deload or review recovery
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 18
+■■  If you see red on the same exercise for 3+ sessions in a row, check sleep, nutrition, and whether you need a deload week (reduce weight 40%, keep reps the same). This is normal every 6–8 weeks.
+
+Your Personal Gym & Physio Tracker Guide  ·  Page 19
+10
+Tips & Best Practices
+ Tip
+ Detail
+Log between sets, not after
+the gym
+Open Google Sheets on your phone after each exercise. Memory fades fast —
+even 30 minutes later you'll mis-remember weights.
+Keep units consistent
+Choose kg or lbs on Day 1 and never switch. If you do switch, add a note in the
+Notes column for that date so your charts don't show a false jump.
+Lock your Day Template tabs
+Right-click a Day Template tab → Protect sheet → Restrict editing. This stops
+accidental formula deletion.
+Use the Google Sheets mobile
+app
+Install the free app — your tracker syncs across all devices automatically. Pin it to
+your home screen.
+Back up monthly
+File → Download → Microsoft Excel (.xlsx) once a month. Store in Google Drive
+or your phone's camera roll.
+Don't build everything on Day
+1
+Start with just the Log tab and Day Templates. Add the Dashboard and charts
+after 2–3 weeks of data. They become meaningful once you have history.
+Review weekly — Sunday 5
+min rule
+Every Sunday, scan your Log. Identify any exercises stalled for 2+ weeks and
+plan a strategy: increase weight, increase reps, or swap the exercise.
+Physio before or after training
+Log physio as a separate entry in the Physio Log — don't mix it with your workout
+Log entries. Keep the two trackers clean and separate.
+Set a phone reminder for
+physio
+Set a recurring reminder every 2 days: 'Physio due — check tracker'. Pair it with a
+habit anchor (e.g. always do it right after your morning coffee).
+You now have a complete, personalised gym and physio tracker.
+Start with Section 1 — create the file and the tabs. Then build the Log tab (Section 2)
+and add the Physio Log (Section 8). Log one full training cycle before touching the
+Dashboard or charts.
+The data tells the story. Your job is to collect it consistently. Now go lift.
+
