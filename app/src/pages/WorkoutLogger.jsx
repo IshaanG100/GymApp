@@ -135,8 +135,11 @@ function ActiveWorkout({ routine, onBack, addWorkout }) {
     async function fetchBestSets() {
       if (!routine || routine.exercises.length === 0) return;
       const data = await Promise.all(routine.exercises.map(async (ex) => {
-        const bestSet = await db.getBestSet(ex.name);
-        return { ...ex, bestSet };
+        const [bestSet, lastSet] = await Promise.all([
+          db.getBestSet(ex.name),
+          db.getLastSessionBestSet(ex.name)
+        ]);
+        return { ...ex, bestSet, lastSet };
       }));
       setExercisesData(data);
 
@@ -285,11 +288,16 @@ function ActiveWorkout({ routine, onBack, addWorkout }) {
             <div style={{ padding: '0 8px', marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{ fontSize: '1.2rem', color: 'var(--primary-color)' }}>{ex.name}</h3>
               {ex.bestSet && (
-                <button 
+                <button
                   onClick={() => toggleBestSet(ex.name)}
-                  style={{ background: 'var(--surface-color-hover)', border: '1px solid var(--surface-border)', padding: '6px 12px', borderRadius: '16px', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', transition: '0.2s' }}
+                  style={{ background: 'var(--surface-color-hover)', border: '1px solid var(--surface-border)', padding: '6px 12px', borderRadius: '16px', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', transition: '0.2s', textAlign: 'right' }}
                 >
-                  {showBestSets[ex.name] ? `🔥 Best: ${ex.bestSet.wt} × ${ex.bestSet.reps}` : '🏆 PR'}
+                  {showBestSets[ex.name] ? (
+                    <span>
+                      🔥 PR: {ex.bestSet.wt} × {ex.bestSet.reps}
+                      {ex.lastSet && <><br />⏮️ Last: {ex.lastSet.wt} × {ex.lastSet.reps}</>}
+                    </span>
+                  ) : '🏆 PR'}
                 </button>
               )}
             </div>

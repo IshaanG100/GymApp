@@ -31,6 +31,27 @@ export async function deletePhysioLog(id) {
   await physioLogsStore.removeItem(id);
 }
 
+function bestSetInLog(log) {
+  let bestSet = null;
+  let maxWt = 0;
+  let maxRepsForMaxWt = 0;
+  for (let i = 1; i <= 6; i++) {
+    if (log[`set${i}Wt`] && log[`set${i}Reps`] && log[`set${i}Wt`] !== 'BW') {
+      const wt = parseFloat(log[`set${i}Wt`]);
+      const reps = parseFloat(log[`set${i}Reps`]);
+      if (wt > maxWt) {
+        maxWt = wt;
+        maxRepsForMaxWt = reps;
+        bestSet = { wt, reps, vol: wt * reps };
+      } else if (wt === maxWt && reps > maxRepsForMaxWt) {
+        maxRepsForMaxWt = reps;
+        bestSet = { wt, reps, vol: wt * reps };
+      }
+    }
+  }
+  return bestSet;
+}
+
 export async function getBestSet(exerciseName) {
   const logs = await getWorkoutLogs();
   const exerciseLogs = logs.filter(log => log.exercise === exerciseName);
@@ -38,22 +59,23 @@ export async function getBestSet(exerciseName) {
   let maxWt = 0;
   let maxRepsForMaxWt = 0;
   for (const log of exerciseLogs) {
-    for (let i = 1; i <= 6; i++) {
-      if (log[`set${i}Wt`] && log[`set${i}Reps`] && log[`set${i}Wt`] !== 'BW') {
-        const wt = parseFloat(log[`set${i}Wt`]);
-        const reps = parseFloat(log[`set${i}Reps`]);
-        if (wt > maxWt) {
-          maxWt = wt;
-          maxRepsForMaxWt = reps;
-          bestSet = { wt, reps, vol: wt * reps };
-        } else if (wt === maxWt && reps > maxRepsForMaxWt) {
-          maxRepsForMaxWt = reps;
-          bestSet = { wt, reps, vol: wt * reps };
-        }
-      }
+    const logBest = bestSetInLog(log);
+    if (logBest && (logBest.wt > maxWt || (logBest.wt === maxWt && logBest.reps > maxRepsForMaxWt))) {
+      maxWt = logBest.wt;
+      maxRepsForMaxWt = logBest.reps;
+      bestSet = logBest;
     }
   }
   return bestSet;
+}
+
+// Best set from the most recent prior session where this exercise was logged
+// (distinct from the all-time best set returned by getBestSet).
+export async function getLastSessionBestSet(exerciseName) {
+  const logs = await getWorkoutLogs();
+  const lastLog = logs.find(log => log.exercise === exerciseName);
+  if (!lastLog) return null;
+  return bestSetInLog(lastLog);
 }
 
 export async function exportAllData() {
