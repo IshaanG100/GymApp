@@ -27,9 +27,8 @@ export const WORKOUT_ROUTINES = [
     id: 'pull-1',
     sessionName: 'Pull',
     exercises: [
-      { name: 'Seated Row', sets: 2, repRange: '10–12' },
-      { name: 'Wide Grip Lat Pulldown', sets: 2, repRange: '10–12' },
-      { name: 'T-Bar Row', sets: 2, repRange: '10–12' },
+      { name: 'Unilateral Seated Row', sets: 3, repRange: '10–12' },
+      { name: 'Unilateral Pull Down', sets: 3, repRange: '10–12' },
       { name: 'Preacher Curl', sets: 2, repRange: '10–12' },
       { name: 'Incline DB Curl', sets: 1, repRange: '10–12' },
       { name: 'Incline DB Hammer Curl', sets: 1, repRange: '10–12' }
@@ -67,6 +66,7 @@ export const GYM_EXERCISES = [
   'Leg Press', 'Leg Curl', 'Leg Extension', 'Calf Raise', 'Abs',
   'Incline Bench Press', 'Tricep Extension', 'Cable Flys', 'Lateral Raise', 'Overhead Tricep Press',
   'Seated Row', 'Wide Grip Lat Pulldown', 'Chest Supported Row', 'Narrow Grip Lat Pulldown', 'T-Bar Row',
+  'Unilateral Seated Row', 'Unilateral Pull Down',
   'Preacher Curl', 'Incline DB Curl', 'Incline DB Hammer Curl', 'Back Hyperextension'
 ];
 
