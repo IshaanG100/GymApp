@@ -2,7 +2,6 @@ import { useData } from '../context/DataContext';
 import { format, startOfWeek, endOfWeek } from 'date-fns';
 import * as db from '../lib/db';
 import { Download } from 'lucide-react';
-import { useMemo } from 'react';
 
 function getGreeting() {
   const h = new Date().getHours();
@@ -39,11 +38,8 @@ export default function Dashboard() {
   });
   const uniquePhysioDates = new Set(physioThisWeek.map(log => format(new Date(log.date), 'yyyy-MM-dd'))).size;
 
-  const dailyPhoto = useMemo(() => {
-    if (photos.length === 0) return null;
-    const dayIndex = today.getDate() % photos.length;
-    return photos[dayIndex];
-  }, [photos, today.getDate()]);
+  const dayOfMonth = today.getDate();
+  const dailyPhoto = photos.length === 0 ? null : photos[dayOfMonth % photos.length];
 
   const handleExport = async () => {
     const data = await db.exportAllData();

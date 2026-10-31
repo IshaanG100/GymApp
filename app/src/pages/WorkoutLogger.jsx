@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useData } from '../context/DataContext';
 import { WORKOUT_ROUTINES } from '../data/seed';
 import * as db from '../lib/db';
@@ -45,15 +45,16 @@ export default function WorkoutLogger() {
 }
 
 // Confetti component
+const CONFETTI_EMOJIS = ['🎉', '🏆', '💪', '🔥', '⭐', '💥', '🎊'];
+
 function Confetti() {
-  const emojis = ['🎉', '🏆', '💪', '🔥', '⭐', '💥', '🎊'];
-  const pieces = useMemo(() => Array.from({ length: 30 }, (_, i) => ({
+  const [pieces] = useState(() => Array.from({ length: 30 }, (_, i) => ({
     id: i,
-    emoji: emojis[i % emojis.length],
+    emoji: CONFETTI_EMOJIS[i % CONFETTI_EMOJIS.length],
     left: Math.random() * 100,
     delay: Math.random() * 2,
     size: 0.8 + Math.random() * 1.2
-  })), []);
+  })));
 
   return (
     <div className="confetti-container">
