@@ -6,8 +6,9 @@ export const WORKOUT_ROUTINES = [
       { name: 'Leg Press', sets: 2, repRange: '10–12' },
       { name: 'Leg Curl', sets: 2, repRange: '10–12' },
       { name: 'Leg Extension', sets: 2, repRange: '12–15' },
-      { name: 'Calf Raise', sets: 3, repRange: '15–20' },
-      { name: 'Abs', sets: 3, repRange: '20–30' }
+      { name: 'Machine Adductor', sets: 2, repRange: '12–15' },
+      { name: 'Calf Raise', sets: 2, repRange: '15–20' },
+      { name: 'Abs', sets: 2, repRange: '20–30' }
     ],
     theme: 'teal'
   },
@@ -17,7 +18,7 @@ export const WORKOUT_ROUTINES = [
     exercises: [
       { name: 'Incline Bench Press', sets: 2, repRange: '8–12' },
       { name: 'Tricep Extension', sets: 2, repRange: '10–15' },
-      { name: 'Cable Flys', sets: 2, repRange: '12–15' },
+      { name: 'DB Hex Press', sets: 2, repRange: '12–15' },
       { name: 'Lateral Raise', sets: 3, repRange: '12–15' },
       { name: 'Overhead Tricep Press', sets: 2, repRange: '10–12' }
     ],
@@ -67,7 +68,8 @@ export const GYM_EXERCISES = [
   'Incline Bench Press', 'Tricep Extension', 'Cable Flys', 'Lateral Raise', 'Overhead Tricep Press',
   'Seated Row', 'Wide Grip Lat Pulldown', 'Chest Supported Row', 'Narrow Grip Lat Pulldown', 'T-Bar Row',
   'Unilateral Seated Row', 'Unilateral Pull Down',
-  'Preacher Curl', 'Incline DB Curl', 'Incline DB Hammer Curl', 'Back Hyperextension'
+  'Preacher Curl', 'Incline DB Curl', 'Incline DB Hammer Curl', 'Back Hyperextension',
+  'Machine Adductor', 'DB Hex Press'
 ];
 
 export const PHYSIO_EXERCISES = [
